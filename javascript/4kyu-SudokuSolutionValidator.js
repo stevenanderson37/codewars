@@ -11,6 +11,7 @@ function validSolution(board){
     return false;
   }
 
+  // CREATES ALL THE 9x9 SQUARES TO BE CHECKED.
   let bs = boardStr;
   let square1 = bs[0]+bs[1]+bs[2]+bs[10]+bs[11]+bs[12]+bs[20]+bs[21]+bs[22];
   let square2 = bs[3]+bs[4]+bs[5]+bs[13]+bs[14]+bs[15]+bs[23]+bs[24]+bs[25];
@@ -21,17 +22,91 @@ function validSolution(board){
   let square7 = bs[60]+bs[61]+bs[62]+bs[70]+bs[71]+bs[72]+bs[80]+bs[81]+bs[82];
   let square8 = bs[63]+bs[64]+bs[65]+bs[73]+bs[74]+bs[75]+bs[83]+bs[84]+bs[85];
   let square9 = bs[66]+bs[67]+bs[68]+bs[76]+bs[77]+bs[78]+bs[86]+bs[87]+bs[88];
-
-  if (/1/.test(square1,square2,square3,square4,square5,square6,square7,square8,square9) === false
-    || /2/.test(square1,square2,square3,square4,square5,square6,square7,square8,square9) === false
-    || /3/.test(square1,square2,square3,square4,square5,square6,square7,square8,square9) === false
-    || /4/.test(square1,square2,square3,square4,square5,square6,square7,square8,square9) === false
-    || /5/.test(square1,square2,square3,square4,square5,square6,square7,square8,square9) === false
-    || /6/.test(square1,square2,square3,square4,square5,square6,square7,square8,square9) === false
-    || /7/.test(square1,square2,square3,square4,square5,square6,square7,square8,square9) === false
-    || /8/.test(square1,square2,square3,square4,square5,square6,square7,square8,square9) === false
-    || /9/.test(square1,square2,square3,square4,square5,square6,square7,square8,square9) === false) {
+  // CHECKS TO MAKE SURE ALL THE 9x9 SQUARES CONTAIN NUMBERS 1-9 WITH NO DUPLICATES.
+  if (!/1/.test(square1,square2,square3,square4,square5,square6,square7,square8,square9)
+    || !/2/.test(square1,square2,square3,square4,square5,square6,square7,square8,square9)
+    || !/3/.test(square1,square2,square3,square4,square5,square6,square7,square8,square9)
+    || !/4/.test(square1,square2,square3,square4,square5,square6,square7,square8,square9)
+    || !/5/.test(square1,square2,square3,square4,square5,square6,square7,square8,square9)
+    || !/6/.test(square1,square2,square3,square4,square5,square6,square7,square8,square9)
+    || !/7/.test(square1,square2,square3,square4,square5,square6,square7,square8,square9)
+    || !/8/.test(square1,square2,square3,square4,square5,square6,square7,square8,square9)
+    || !/9/.test(square1,square2,square3,square4,square5,square6,square7,square8,square9)) {
     return false;
+  }
+
+  // CHECKS ALL THE INDIVIDUAL VERTICAL ROWS TO MAKE SURE THEY CONTAIN NUMBERS 1-9.
+  var numsSet = new Set();
+  for (i = 0; i < boardStr.length-1; i+=10) {
+    if (numsSet.has(boardStr[i])) {
+      return false;
+    } else {
+      numsSet.add(boardStr[i]);
+    }
+  }
+  numsSet.clear();
+  for (i = 1; i < boardStr.length-1; i+=10) {
+    if (numsSet.has(boardStr[i])) {
+      return false;
+    } else {
+      numsSet.add(boardStr[i]);
+    }
+  }
+  numsSet.clear();
+  for (i = 2; i < boardStr.length-1; i+=10) {
+    if (numsSet.has(boardStr[i])) {
+      return false;
+    } else {
+      numsSet.add(boardStr[i]);
+    }
+  }
+  numsSet.clear();
+  for (i = 3; i < boardStr.length-1; i+=10) {
+    if (numsSet.has(boardStr[i])) {
+      return false;
+    } else {
+      numsSet.add(boardStr[i]);
+    }
+  }
+  numsSet.clear();
+  for (i = 4; i < boardStr.length-1; i+=10) {
+    if (numsSet.has(boardStr[i])) {
+      return false;
+    } else {
+      numsSet.add(boardStr[i]);
+    }
+  }
+  numsSet.clear();
+  for (i = 5; i < boardStr.length-1; i+=10) {
+    if (numsSet.has(boardStr[i])) {
+      return false;
+    } else {
+      numsSet.add(boardStr[i]);
+    }
+  }
+  numsSet.clear();
+  for (i = 6; i < boardStr.length-1; i+=10) {
+    if (numsSet.has(boardStr[i])) {
+      return false;
+    } else {
+      numsSet.add(boardStr[i]);
+    }
+  }
+  numsSet.clear();
+  for (i = 7; i < boardStr.length-1; i+=10) {
+    if (numsSet.has(boardStr[i])) {
+      return false;
+    } else {
+      numsSet.add(boardStr[i]);
+    }
+  }
+  numsSet.clear();
+  for (i = 8; i < boardStr.length-1; i+=10) {
+    if (numsSet.has(boardStr[i])) {
+      return false;
+    } else {
+      numsSet.add(boardStr[i]);
+    }
   }
 
   return true;
@@ -82,6 +157,40 @@ console.log(validSolution([[1, 2, 3, 4, 5, 6, 7, 8, 9],
                            [7, 8, 9, 1, 2, 3, 4, 5, 6],
                            [8, 9, 1, 2, 3, 4, 5, 6, 7],
                            [9, 1, 2, 3, 4, 5, 6, 7, 8]])); // should return false
+
+// CHECKS ALL THE 9X9 SQUARES WITHIN THE ENTIRE SQUARE, BUT NO THE INDIVIDUAL ROWS. IT WORKED IN CODEWARS, BUT IT SEEMS LIKE THERE COULD BE SOLUTIONS WHERE THE 9X9 SQUARES ALL CONTAIN EVERY NUMBER 1-9 WITHOUT CORRECTLY SOLVING THE PUZZLE. IT SEEMS LIKE IT SHOULD CHECK BOTH.
+
+// function validSolution(board){
+//   let boardStr = board.join(' ').replace(/,/g,'');
+//   if (/0/.test(boardStr)) {
+//     return false;
+//   }
+//
+//   let bs = boardStr;
+//   let square1 = bs[0]+bs[1]+bs[2]+bs[10]+bs[11]+bs[12]+bs[20]+bs[21]+bs[22];
+//   let square2 = bs[3]+bs[4]+bs[5]+bs[13]+bs[14]+bs[15]+bs[23]+bs[24]+bs[25];
+//   let square3 = bs[6]+bs[7]+bs[8]+bs[16]+bs[17]+bs[18]+bs[26]+bs[27]+bs[28];
+//   let square4 = bs[30]+bs[31]+bs[32]+bs[40]+bs[41]+bs[42]+bs[50]+bs[51]+bs[52];
+//   let square5 = bs[33]+bs[34]+bs[35]+bs[43]+bs[44]+bs[45]+bs[53]+bs[54]+bs[55];
+//   let square6 = bs[36]+bs[37]+bs[38]+bs[46]+bs[47]+bs[48]+bs[56]+bs[57]+bs[58];
+//   let square7 = bs[60]+bs[61]+bs[62]+bs[70]+bs[71]+bs[72]+bs[80]+bs[81]+bs[82];
+//   let square8 = bs[63]+bs[64]+bs[65]+bs[73]+bs[74]+bs[75]+bs[83]+bs[84]+bs[85];
+//   let square9 = bs[66]+bs[67]+bs[68]+bs[76]+bs[77]+bs[78]+bs[86]+bs[87]+bs[88];
+//
+//   if (!/1/.test(square1,square2,square3,square4,square5,square6,square7,square8,square9)
+//     || !/2/.test(square1,square2,square3,square4,square5,square6,square7,square8,square9)
+//     || !/3/.test(square1,square2,square3,square4,square5,square6,square7,square8,square9)
+//     || !/4/.test(square1,square2,square3,square4,square5,square6,square7,square8,square9)
+//     || !/5/.test(square1,square2,square3,square4,square5,square6,square7,square8,square9)
+//     || !/6/.test(square1,square2,square3,square4,square5,square6,square7,square8,square9)
+//     || !/7/.test(square1,square2,square3,square4,square5,square6,square7,square8,square9)
+//     || !/8/.test(square1,square2,square3,square4,square5,square6,square7,square8,square9)
+//     || !/9/.test(square1,square2,square3,square4,square5,square6,square7,square8,square9)) {
+//     return false;
+//   }
+//
+//   return true;
+// }
 
 // CHECKS THE HORIZONTAL AND VERTICAL ROWS, BUT DOES NOT CHECK THE 9 LARGER SQUARES MADE UP OF 9 SMALLER SQUARES.
 
